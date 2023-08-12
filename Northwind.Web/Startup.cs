@@ -1,3 +1,4 @@
+using static System.Console;
 using Packt.Shared; // AddNorthWindContext extension method
 namespace Northwind.Web;
 
@@ -18,9 +19,30 @@ public class Startup
 
         app.UseRouting(); // start endpoint routing
 
+        app.Use(
+            async (HttpContext context, Func<Task> next) =>
+            {
+                RouteEndpoint? rep = context.GetEndpoint() as RouteEndpoint;
+
+                if(rep is not null)
+                {
+                    WriteLine($"Endpoint name: {rep.DisplayName}");
+                    WriteLine($"Endpoint route pattern: {rep.RoutePattern.RawText}");
+                }
+
+                if(context.Request.Path == "/bonjour")
+                {
+                    await context.Response.WriteAsync("Bonjour Monde!");
+                    return;
+                }
+
+                await next();
+            }
+        );
+
         app.UseHttpsRedirection();
 
-        app.UseDefaultFiles();
+        app.UseDefaultFiles(); // index.html, default.html, and so on
 
         app.UseStaticFiles();
 

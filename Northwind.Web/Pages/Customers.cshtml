@@ -1,0 +1,57 @@
+﻿@page
+@using Packt.Shared
+@using Northwind.Web.Pages
+@model CustomersModel
+
+<div class="row">
+    <h1 class="display-2">Customers</h1>
+    @if (Model.customers is not null)
+        {
+
+        <table class="table table-striped table-bordered" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Country</th>
+                    <th>City</th>
+                    <th>CustomerId</th>
+                    <th>CompanyName</th>
+                    <th>ContactName</th>
+                    <th>ContactTitle</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (IGrouping<string?, Customer>? item in Model.customers)
+                    {
+                    <tr style="background-color: aliceblue">
+                        <td style="font-weight:bolder">@item?.Key</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                        foreach (Customer customer in item!)
+                        {
+                        <tr asp-for="">
+                            <td>@customer.Country</td>
+                            <td>@customer.City</td>
+                            <td>@customer.CustomerId</td>
+                            <td>@customer.CompanyName</td>
+                            <td>@customer.ContactName</td>
+                            <td>@customer.ContactTitle</td>
+                            <td>
+                                
+                                <button class="btn btn-primary">
+                                        View
+                                </button>
+                                
+                            </td>
+                        </tr>
+                        }
+                     }
+            </tbody>
+        </table>
+        }
+    </div>

@@ -1,0 +1,22 @@
+﻿@page
+@using Packt.Shared
+@using Northwind.Web.Pages
+@model CustomersModel
+
+<div class="row">
+    <h1 class="display-2">Customers</h1>
+    <ul>
+        <li>@Model.SelectedCustomer!.CustomerId.</li>
+        <li>@Model.SelectedCustomer!.CompanyName</li>
+        <li>@Model.SelectedCustomer!.ContactName</li>
+        <li>@Model.SelectedCustomer!.ContactTitle</li>
+        <li>@Model.SelectedCustomer!.Address</li>
+        <li>@Model.SelectedCustomer!.City</li>
+        <li>@Model.SelectedCustomer!.Region</li>
+        <li>@Model.SelectedCustomer!.PostalCode</li>
+        <li>@Model.SelectedCustomer!.Country</li>
+        <li>@Model.SelectedCustomer!.Phone</li>
+        <li>@Model.SelectedCustomer!.Fax</li>
+    </ul>
+</div>
+
