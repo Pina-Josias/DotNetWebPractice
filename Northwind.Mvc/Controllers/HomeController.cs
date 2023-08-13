@@ -1,4 +1,6 @@
-﻿using System.Diagnostics;
+﻿using System.Data;
+using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Northwind.Mvc.Models;
 
@@ -15,9 +17,14 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
+        _logger.LogError("This is a serious error (not really!)");
+        _logger.LogWarning("This is your first warning!");
+        _logger.LogWarning("Second warning!");
+        _logger.LogInformation("I am in the Index method of the HomeController.");
         return View();
     }
 
+    [Authorize(Roles = "Administrators")]
     public IActionResult Privacy()
     {
         return View();
